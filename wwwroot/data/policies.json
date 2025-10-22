@@ -1,0 +1,97 @@
+[
+  {
+    "Id": 1,
+    "Name": "Comprehensive Health Insurance",
+    "Type": "Health",
+    "Description": "Full coverage for medical expenses including hospitalization, surgery, and outpatient care",
+    "BasePremium": 250.00,
+    "CoverageAmount": 100000.00,
+    "DurationMonths": 12,
+    "MinAge": 18,
+    "MaxAge": 65,
+    "IsActive": true,
+    "CreatedAt": "2025-01-01T00:00:00",
+    "Features": [
+      "24/7 Hospital Coverage",
+      "Pre and Post Hospitalization",
+      "Cashless Treatment",
+      "Annual Health Checkup"
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "Term Life Insurance",
+    "Type": "Life",
+    "Description": "Affordable life coverage with guaranteed payout to beneficiaries",
+    "BasePremium": 180.00,
+    "CoverageAmount": 500000.00,
+    "DurationMonths": 120,
+    "MinAge": 18,
+    "MaxAge": 60,
+    "IsActive": true,
+    "CreatedAt": "2025-01-01T00:00:00",
+    "Features": [
+      "High Coverage Amount",
+      "Affordable Premium",
+      "Tax Benefits",
+      "Easy Claim Process"
+    ]
+  },
+  {
+    "Id": 3,
+    "Name": "Auto Insurance Plus",
+    "Type": "Auto",
+    "Description": "Complete protection for your vehicle against accidents, theft, and third-party liabilities",
+    "BasePremium": 300.00,
+    "CoverageAmount": 50000.00,
+    "DurationMonths": 12,
+    "MinAge": 21,
+    "MaxAge": 70,
+    "IsActive": true,
+    "CreatedAt": "2025-01-01T00:00:00",
+    "Features": [
+      "Collision Coverage",
+      "Theft Protection",
+      "Third Party Liability",
+      "Roadside Assistance"
+    ]
+  },
+  {
+    "Id": 4,
+    "Name": "Home Protection Plan",
+    "Type": "Home",
+    "Description": "Safeguard your home and belongings from natural disasters, theft, and damages",
+    "BasePremium": 400.00,
+    "CoverageAmount": 250000.00,
+    "DurationMonths": 12,
+    "MinAge": 21,
+    "MaxAge": 75,
+    "IsActive": true,
+    "CreatedAt": "2025-01-01T00:00:00",
+    "Features": [
+      "Fire and Natural Disaster Coverage",
+      "Theft Protection",
+      "Personal Property Coverage",
+      "Temporary Living Expenses"
+    ]
+  },
+  {
+    "Id": 5,
+    "Name": "Travel Insurance Elite",
+    "Type": "Travel",
+    "Description": "Comprehensive travel coverage for international and domestic trips",
+    "BasePremium": 120.00,
+    "CoverageAmount": 25000.00,
+    "DurationMonths": 1,
+    "MinAge": 18,
+    "MaxAge": 80,
+    "IsActive": true,
+    "CreatedAt": "2025-01-01T00:00:00",
+    "Features": [
+      "Medical Emergency Coverage",
+      "Trip Cancellation",
+      "Lost Baggage Protection",
+      "24/7 Travel Assistance"
+    ]
+  }
+]

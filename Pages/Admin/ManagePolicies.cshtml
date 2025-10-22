@@ -1,0 +1,200 @@
+@page
+@model SmartInsuranceWeb.Pages.Admin.ManagePoliciesModel
+@{
+    ViewData["Title"] = "Manage Policies";
+}
+
+<div class="container mt-4">
+    <h2>Manage Insurance Policies</h2>
+    <hr />
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success">@Model.SuccessMessage</div>
+    }
+
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPolicyModal">
+        + Add New Policy
+    </button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Premium</th>
+                <th>Coverage</th>
+                <th>Duration</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var policy in Model.Policies)
+            {
+                <tr>
+                    <td>@policy.Id</td>
+                    <td>@policy.Name</td>
+                    <td>@policy.Type</td>
+                    <td>$@policy.BasePremium</td>
+                    <td>$@policy.CoverageAmount</td>
+                    <td>@policy.DurationMonths months</td>
+                    <td>
+                        <span class="badge bg-@(policy.IsActive ? "success" : "secondary")">
+                            @(policy.IsActive ? "Active" : "Inactive")
+                        </span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal@policy.Id">
+                            Edit
+                        </button>
+                        <form method="post" asp-page-handler="Delete" style="display:inline;">
+                            <input type="hidden" name="policyId" value="@policy.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editModal@policy.Id" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form method="post" asp-page-handler="Update">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit Policy</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name="policyId" value="@policy.Id" />
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Policy Name</label>
+                                            <input type="text" class="form-control" name="name" value="@policy.Name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Type</label>
+                                            <select class="form-control" name="type" required>
+                                                <option value="Health" selected="@(policy.Type == "Health")">Health</option>
+                                                <option value="Life" selected="@(policy.Type == "Life")">Life</option>
+                                                <option value="Auto" selected="@(policy.Type == "Auto")">Auto</option>
+                                                <option value="Home" selected="@(policy.Type == "Home")">Home</option>
+                                                <option value="Travel" selected="@(policy.Type == "Travel")">Travel</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-control" name="description" rows="2" required>@policy.Description</textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Base Premium</label>
+                                            <input type="number" class="form-control" name="basePremium" value="@policy.BasePremium" step="0.01" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Coverage Amount</label>
+                                            <input type="number" class="form-control" name="coverageAmount" value="@policy.CoverageAmount" step="0.01" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">Duration (Months)</label>
+                                            <input type="number" class="form-control" name="durationMonths" value="@policy.DurationMonths" required>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">Min Age</label>
+                                            <input type="number" class="form-control" name="minAge" value="@policy.MinAge" required>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">Max Age</label>
+                                            <input type="number" class="form-control" name="maxAge" value="@policy.MaxAge" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-control" name="isActive">
+                                            <option value="true" selected="@policy.IsActive">Active</option>
+                                            <option value="false" selected="@(!policy.IsActive)">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Policy Modal -->
+<div class="modal fade" id="addPolicyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Add">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Policy Name</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Type</label>
+                            <select class="form-control" name="type" required>
+                                <option value="">Select</option>
+                                <option value="Health">Health</option>
+                                <option value="Life">Life</option>
+                                <option value="Auto">Auto</option>
+                                <option value="Home">Home</option>
+                                <option value="Travel">Travel</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="description" rows="2" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Base Premium</label>
+                            <input type="number" class="form-control" name="basePremium" step="0.01" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Coverage Amount</label>
+                            <input type="number" class="form-control" name="coverageAmount" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Duration (Months)</label>
+                            <input type="number" class="form-control" name="durationMonths" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Min Age</label>
+                            <input type="number" class="form-control" name="minAge" value="18" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Max Age</label>
+                            <input type="number" class="form-control" name="maxAge" value="65" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Policy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

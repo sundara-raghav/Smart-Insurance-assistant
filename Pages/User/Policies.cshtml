@@ -1,0 +1,80 @@
+@page
+@model SmartInsuranceWeb.Pages.User.PoliciesModel
+@{
+    ViewData["Title"] = "Browse Policies";
+}
+
+<div class="container mt-4">
+    <h2>Available Insurance Policies</h2>
+    <hr />
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <form method="get">
+                <label class="form-label">Filter by Type:</label>
+                <select class="form-control" name="filterType" onchange="this.form.submit()">
+                    <option value="">All Types</option>
+                    <option value="Health" selected="@(Model.FilterType == "Health")">Health</option>
+                    <option value="Life" selected="@(Model.FilterType == "Life")">Life</option>
+                    <option value="Auto" selected="@(Model.FilterType == "Auto")">Auto</option>
+                    <option value="Home" selected="@(Model.FilterType == "Home")">Home</option>
+                    <option value="Travel" selected="@(Model.FilterType == "Travel")">Travel</option>
+                </select>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <form method="get">
+                <label class="form-label">Sort by:</label>
+                <select class="form-control" name="sortBy" onchange="this.form.submit()">
+                    <option value="Name" selected="@(Model.SortBy == "Name")">Name</option>
+                    <option value="Premium" selected="@(Model.SortBy == "Premium")">Premium (Low to High)</option>
+                    <option value="Coverage" selected="@(Model.SortBy == "Coverage")">Coverage Amount</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success">@Model.SuccessMessage</div>
+    }
+
+    <div class="row">
+        @foreach (var policy in Model.Policies)
+        {
+            var calculatedPremium = Model.CurrentUser != null ? Model.CalculatePremium(policy) : policy.BasePremium;
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5>@policy.Name</h5>
+                        <span class="badge bg-light text-dark">@policy.Type</span>
+                    </div>
+                    <div class="card-body">
+                        <p>@policy.Description</p>
+                        <ul class="list-unstyled">
+                            @foreach (var feature in policy.Features)
+                            {
+                                <li>✓ @feature</li>
+                            }
+                        </ul>
+                        <hr />
+                        <p><strong>Coverage:</strong> $@policy.CoverageAmount</p>
+                        <p><strong>Base Premium:</strong> $@policy.BasePremium/month</p>
+                        @if (Model.CurrentUser != null)
+                        {
+                            <p><strong>Your Premium:</strong> $@calculatedPremium/month</p>
+                        }
+                        <p><strong>Duration:</strong> @policy.DurationMonths months</p>
+                        <p><strong>Age Range:</strong> @policy.MinAge - @policy.MaxAge years</p>
+                    </div>
+                    <div class="card-footer">
+                        <form method="post" asp-page-handler="Buy">
+                            <input type="hidden" name="policyId" value="@policy.Id" />
+                            <button type="submit" class="btn btn-success w-100">Buy Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

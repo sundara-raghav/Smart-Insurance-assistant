@@ -1,0 +1,109 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-3">🛡️ Smart Insurance Assistant</h1>
+    <p class="lead">Your Intelligent Partner for Insurance Management</p>
+    <hr class="my-4" />
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🏥 Health Insurance</h3>
+                    <p>Comprehensive coverage for medical expenses, hospitalization, and wellness.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🚗 Auto Insurance</h3>
+                    <p>Protect your vehicle with collision, theft, and liability coverage.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🏠 Home Insurance</h3>
+                    <p>Safeguard your home and belongings from disasters and theft.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <div class="card bg-primary text-white h-100">
+                <div class="card-body">
+                    <h4>For Users</h4>
+                    <ul>
+                        <li>Browse and compare insurance policies</li>
+                        <li>Get personalized policy recommendations</li>
+                        <li>Purchase policies with calculated premiums</li>
+                        <li>File and track insurance claims</li>
+                        <li>View policy details and coverage</li>
+                    </ul>
+                    <a asp-page="/Register" class="btn btn-light">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card bg-success text-white h-100">
+                <div class="card-body">
+                    <h4>For Administrators</h4>
+                    <ul>
+                        <li>Manage insurance policies (Add/Edit/Delete)</li>
+                        <li>Review and approve/reject claims</li>
+                        <li>Manage user accounts</li>
+                        <li>View detailed reports and statistics</li>
+                        <li>Monitor system performance</li>
+                    </ul>
+                    <a asp-page="/Login" class="btn btn-light">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <h3>Why Choose Smart Insurance?</h3>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <h1>🎯</h1>
+                    <h5>Smart Predictions</h5>
+                    <p>AI-powered policy recommendations based on your profile</p>
+                </div>
+                <div class="col-md-3">
+                    <h1>💰</h1>
+                    <h5>Fair Pricing</h5>
+                    <p>Risk-based premium calculations for accurate pricing</p>
+                </div>
+                <div class="col-md-3">
+                    <h1>⚡</h1>
+                    <h5>Quick Claims</h5>
+                    <p>Fast and efficient claim processing</p>
+                </div>
+                <div class="col-md-3">
+                    <h1>📊</h1>
+                    <h5>Full Transparency</h5>
+                    <p>Complete visibility into your policies and claims</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-md-12 text-center">
+            <h4>Ready to Get Started?</h4>
+            <a asp-page="/Register" class="btn btn-primary btn-lg me-2">Create Account</a>
+            <a asp-page="/Login" class="btn btn-outline-primary btn-lg">Login</a>
+        </div>
+    </div>
+</div>

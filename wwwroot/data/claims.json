@@ -1,0 +1,50 @@
+[
+  {
+    "Id": 1,
+    "UserId": 1,
+    "PolicyId": 1,
+    "ClaimType": "Medical",
+    "Description": "Hospitalization for surgery",
+    "ClaimAmount": 15000.00,
+    "Status": "Approved",
+    "FiledDate": "2025-05-10T11:20:00",
+    "ProcessedDate": "2025-05-15T16:30:00",
+    "AdminNotes": "All documents verified. Claim approved."
+  },
+  {
+    "Id": 2,
+    "UserId": 2,
+    "PolicyId": 2,
+    "ClaimType": "Life",
+    "Description": "Critical illness claim",
+    "ClaimAmount": 50000.00,
+    "Status": "Approved",
+    "FiledDate": "2025-10-05T09:45:00",
+    "ProcessedDate": "2025-10-18T10:57:07.2692443+05:30",
+    "AdminNotes": null
+  },
+  {
+    "Id": 3,
+    "UserId": 3,
+    "PolicyId": 3,
+    "ClaimType": "Medial",
+    "Description": "hello",
+    "ClaimAmount": 20000,
+    "Status": "Approved",
+    "FiledDate": "2025-10-18T10:42:06.9225996+05:30",
+    "ProcessedDate": "2025-10-18T10:56:37.4922339+05:30",
+    "AdminNotes": null
+  },
+  {
+    "Id": 4,
+    "UserId": 3,
+    "PolicyId": 3,
+    "ClaimType": "Medial",
+    "Description": "hello",
+    "ClaimAmount": 20000,
+    "Status": "Approved",
+    "FiledDate": "2025-10-18T10:43:47.8815546+05:30",
+    "ProcessedDate": "2025-10-18T10:56:32.8868418+05:30",
+    "AdminNotes": null
+  }
+]

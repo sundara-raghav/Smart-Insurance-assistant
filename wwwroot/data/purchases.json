@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "UserId": 1,
+    "PolicyId": 1,
+    "PremiumPaid": 300.00,
+    "PurchaseDate": "2025-02-01T10:00:00",
+    "ExpiryDate": "2026-02-01T10:00:00",
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "UserId": 1,
+    "PolicyId": 3,
+    "PremiumPaid": 360.00,
+    "PurchaseDate": "2025-03-15T14:30:00",
+    "ExpiryDate": "2026-03-15T14:30:00",
+    "IsActive": true
+  },
+  {
+    "Id": 3,
+    "UserId": 2,
+    "PolicyId": 2,
+    "PremiumPaid": 198.00,
+    "PurchaseDate": "2025-03-20T09:15:00",
+    "ExpiryDate": "2035-03-20T09:15:00",
+    "IsActive": true
+  },
+  {
+    "Id": 4,
+    "UserId": 3,
+    "PolicyId": 3,
+    "PremiumPaid": 360.00,
+    "PurchaseDate": "2025-10-18T10:11:40.8647428+05:30",
+    "ExpiryDate": "2026-10-18T10:11:40.8647434+05:30",
+    "IsActive": true
+  },
+  {
+    "Id": 5,
+    "UserId": 3,
+    "PolicyId": 1,
+    "PremiumPaid": 300.00,
+    "PurchaseDate": "2025-10-18T10:11:54.768169+05:30",
+    "ExpiryDate": "2026-10-18T10:11:54.7681691+05:30",
+    "IsActive": true
+  },
+  {
+    "Id": 6,
+    "UserId": 3,
+    "PolicyId": 5,
+    "PremiumPaid": 144.00,
+    "PurchaseDate": "2025-10-18T10:12:01.777867+05:30",
+    "ExpiryDate": "2025-11-18T10:12:01.7778671+05:30",
+    "IsActive": true
+  }
+]

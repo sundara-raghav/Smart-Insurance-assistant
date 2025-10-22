@@ -1,0 +1,101 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SmartInsuranceWeb
+build_property.RootNamespace = SmartInsuranceWeb
+build_property.ProjectDir = D:\C sharpe\SmartInsuranceWeb\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\C sharpe\SmartInsuranceWeb
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Admin/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Admin/ManageClaims.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlQ2xhaW1zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Admin/ManagePolicies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlUG9saWNpZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Admin/ManageUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlVXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Admin/Reports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVwb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Chat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/TestChat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdENoYXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/User/Claims.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxDbGFpbXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/User/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/User/Policies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxQb2xpY2llcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C sharpe/SmartInsuranceWeb/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-7ea1yebu55

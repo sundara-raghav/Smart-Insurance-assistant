@@ -1,0 +1,9 @@
+[
+  {
+    "Id": 1,
+    "Name": "Admin User",
+    "Email": "admin@insurance.com",
+    "Password": "Admin123!",
+    "CreatedAt": "2025-01-01T00:00:00"
+  }
+]

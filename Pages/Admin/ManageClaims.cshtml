@@ -1,0 +1,134 @@
+@page
+@model SmartInsuranceWeb.Pages.Admin.ManageClaimsModel
+@{
+    ViewData["Title"] = "Manage Claims";
+}
+
+<div class="container mt-4">
+    <h2>Manage Insurance Claims</h2>
+    <hr />
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success">@Model.SuccessMessage</div>
+    }
+
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <a class="nav-link @(Model.Filter == "Pending" ? "active" : "")" asp-page="/Admin/ManageClaims" asp-route-filter="Pending">Pending</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model.Filter == "All" ? "active" : "")" asp-page="/Admin/ManageClaims" asp-route-filter="All">All Claims</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model.Filter == "Approved" ? "active" : "")" asp-page="/Admin/ManageClaims" asp-route-filter="Approved">Approved</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model.Filter == "Rejected" ? "active" : "")" asp-page="/Admin/ManageClaims" asp-route-filter="Rejected">Rejected</a>
+        </li>
+    </ul>
+
+    @if (Model.Claims.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Claim ID</th>
+                    <th>User</th>
+                    <th>Policy</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Filed Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model.Claims)
+                {
+                    <tr>
+                        <td>#@claim.Id</td>
+                        <td>@Model.GetUserName(claim.UserId)</td>
+                        <td>@Model.GetPolicyName(claim.PolicyId)</td>
+                        <td>@claim.ClaimType</td>
+                        <td>$@claim.ClaimAmount</td>
+                        <td>
+                            <span class="badge bg-@(claim.Status == "Approved" ? "success" : claim.Status == "Rejected" ? "danger" : "warning")">
+                                @claim.Status
+                            </span>
+                        </td>
+                        <td>@claim.FiledDate.ToShortDateString()</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#claimModal@claim.Id">
+                                Details
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Claim Details Modal -->
+                    <div class="modal fade" id="claimModal@claim.Id" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Claim #@claim.Id Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>User:</strong> @Model.GetUserName(claim.UserId)</p>
+                                            <p><strong>Policy:</strong> @Model.GetPolicyName(claim.PolicyId)</p>
+                                            <p><strong>Claim Type:</strong> @claim.ClaimType</p>
+                                            <p><strong>Amount:</strong> $@claim.ClaimAmount</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Status:</strong> @claim.Status</p>
+                                            <p><strong>Filed Date:</strong> @claim.FiledDate</p>
+                                            @if (claim.ProcessedDate.HasValue)
+                                            {
+                                                <p><strong>Processed:</strong> @claim.ProcessedDate</p>
+                                            }
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <p><strong>Description:</strong></p>
+                                    <p>@claim.Description</p>
+                                    @if (!string.IsNullOrEmpty(claim.AdminNotes))
+                                    {
+                                        <hr />
+                                        <p><strong>Admin Notes:</strong></p>
+                                        <p>@claim.AdminNotes</p>
+                                    }
+
+                                    @if (claim.Status == "Pending")
+                                    {
+                                        <hr />
+                                        <form method="post">
+                                            <input type="hidden" name="claimId" value="@claim.Id" />
+                                            <div class="mb-3">
+                                                <label class="form-label">Admin Notes</label>
+                                                <textarea class="form-control" name="adminNotes" rows="3"></textarea>
+                                            </div>
+                                            <div class="btn-group w-100">
+                                                <button type="submit" name="action" value="Approve" class="btn btn-success">
+                                                    ✓ Approve Claim
+                                                </button>
+                                                <button type="submit" name="action" value="Reject" class="btn btn-danger">
+                                                    ✗ Reject Claim
+                                                </button>
+                                            </div>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-muted">No claims found for the selected filter.</p>
+    }
+</div>

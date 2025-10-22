@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Smart Insurance Assistant</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/chatbot.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SmartInsuranceWeb.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">🛡️ Smart Insurance</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @{
+                        var userType = Context.Session.GetString("UserType");
+                        var userName = Context.Session.GetString("UserName");
+                    }
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        
+                        @if (userType == "User")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/User/Dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/User/Policies">Browse Policies</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/User/Claims">My Claims</a>
+                            </li>
+                        }
+                        else if (userType == "Admin")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/Dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/ManagePolicies">Policies</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/ManageClaims">Claims</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/ManageUsers">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Admin/Reports">Reports</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav">
+                        @if (!string.IsNullOrEmpty(userName))
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-white">👤 @userName (@userType)</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-page="/Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - SmartInsuranceWeb - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chatbot.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

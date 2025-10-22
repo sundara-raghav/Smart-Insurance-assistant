@@ -1,0 +1,120 @@
+@page
+@model SmartInsuranceWeb.Pages.Admin.ManageUsersModel
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div class="container mt-4">
+    <h2>Manage Users</h2>
+    <hr />
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success">@Model.SuccessMessage</div>
+    }
+
+    <div class="mb-3">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search users by name or email..." onkeyup="filterTable()">
+    </div>
+
+    <table class="table table-striped" id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Registered</th>
+                <th>Policies</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Age</td>
+                    <td>@user.Gender</td>
+                    <td>@user.Phone</td>
+                    <td>@user.CreatedAt.ToShortDateString()</td>
+                    <td>@user.PurchasedPolicyIds.Count</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#userModal@user.Id">
+                            View
+                        </button>
+                        <form method="post" asp-page-handler="Delete" style="display:inline;">
+                            <input type="hidden" name="userId" value="@user.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+
+                <!-- User Details Modal -->
+                <div class="modal fade" id="userModal@user.Id" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">User Details - @user.Name</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Email:</strong> @user.Email</p>
+                                <p><strong>Age:</strong> @user.Age</p>
+                                <p><strong>Gender:</strong> @user.Gender</p>
+                                <p><strong>Phone:</strong> @user.Phone</p>
+                                <p><strong>Address:</strong> @user.Address</p>
+                                <p><strong>Registered:</strong> @user.CreatedAt</p>
+                                <hr />
+                                <h6>Purchased Policies:</h6>
+                                @if (user.PurchasedPolicyIds.Any())
+                                {
+                                    <ul>
+                                        @foreach (var policyId in user.PurchasedPolicyIds)
+                                        {
+                                            var policy = Model.GetPolicy(policyId);
+                                            <li>@policy?.Name ?? $"Policy #{policyId}"</li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">No policies purchased yet.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+function filterTable() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("usersTable");
+    var tr = table.getElementsByTagName("tr");
+
+    for (var i = 1; i < tr.length; i++) {
+        var tdName = tr[i].getElementsByTagName("td")[1];
+        var tdEmail = tr[i].getElementsByTagName("td")[2];
+        if (tdName || tdEmail) {
+            var nameValue = tdName.textContent || tdName.innerText;
+            var emailValue = tdEmail.textContent || tdEmail.innerText;
+            if (nameValue.toUpperCase().indexOf(filter) > -1 || emailValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>

@@ -1,0 +1,179 @@
+@page
+@model SmartInsuranceWeb.Pages.Admin.ReportsModel
+@{
+    ViewData["Title"] = "Reports & Statistics";
+}
+
+<div class="container mt-4">
+    <h2>Reports & Statistics</h2>
+    <hr />
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body text-center">
+                    <h6>Total Revenue</h6>
+                    <h3>$@Model.TotalRevenue</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body text-center">
+                    <h6>Active Users</h6>
+                    <h3>@Model.TotalUsers</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h6>Total Policies Sold</h6>
+                    <h3>@Model.TotalPurchases</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body text-center">
+                    <h6>Claims Filed</h6>
+                    <h3>@Model.TotalClaims</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Policy Type Distribution</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Policy Type</th>
+                        <th>Count</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PolicyTypeDistribution)
+                    {
+                        var percentage = Model.TotalPolicies > 0 ? (item.Value * 100.0 / Model.TotalPolicies) : 0;
+                        <tr>
+                            <td>@item.Key</td>
+                            <td>@item.Value</td>
+                            <td>@percentage.ToString("F1")%</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Purchase Statistics by Type</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Policy Type</th>
+                        <th>Purchases</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PurchasesByType)
+                    {
+                        <tr>
+                            <td>@item.Key</td>
+                            <td>@item.Value.Count</td>
+                            <td>$@item.Value.Revenue.ToString("F2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h4>Claim Statistics</h4>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Status</th>
+                    <th>Count</th>
+                    <th>Total Amount</th>
+                </tr>
+                <tr>
+                    <td>Pending</td>
+                    <td>@Model.ClaimStats["Pending"]</td>
+                    <td>$@Model.PendingClaimAmount.ToString("F2")</td>
+                </tr>
+                <tr class="table-success">
+                    <td>Approved</td>
+                    <td>@Model.ClaimStats["Approved"]</td>
+                    <td>$@Model.ApprovedClaimAmount.ToString("F2")</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Rejected</td>
+                    <td>@Model.ClaimStats["Rejected"]</td>
+                    <td>$@Model.RejectedClaimAmount.ToString("F2")</td>
+                </tr>
+                <tr class="table-info">
+                    <th>Total</th>
+                    <th>@Model.ClaimStats["Total"]</th>
+                    <th>$@Model.TotalClaimAmount.ToString("F2")</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Top Users by Purchases</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Policies Purchased</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.TopUsers.Take(10))
+                    {
+                        <tr>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>@user.PurchasedPolicyIds.Count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h4>Recent Purchases</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Policy</th>
+                        <th>Premium</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var purchase in Model.RecentPurchases.Take(10))
+                    {
+                        <tr>
+                            <td>@purchase.PurchaseDate.ToShortDateString()</td>
+                            <td>@Model.GetUserName(purchase.UserId)</td>
+                            <td>@Model.GetPolicyName(purchase.PolicyId)</td>
+                            <td>$@purchase.PremiumPaid</td>
+                            <td>Until @purchase.ExpiryDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
