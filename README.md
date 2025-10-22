@@ -54,51 +54,6 @@ A comprehensive insurance management system built with **ASP.NET Core Razor Page
 - **Frontend**: Bootstrap 5, jQuery
 - **Session Management**: ASP.NET Core Sessions
 
-### Project Structure
-```
-SmartInsuranceWeb/
-├── Models/                      # Data models
-│   ├── User.cs
-│   ├── Admin.cs
-│   ├── Policy.cs
-│   ├── Claim.cs
-│   └── UserPurchase.cs
-├── Services/                    # Business logic layer
-│   ├── DataService.cs          # JSON read/write operations
-│   ├── UserService.cs          # User management
-│   ├── PolicyService.cs        # Policy & purchase management
-│   └── ClaimService.cs         # Claim processing
-├── Pages/                       # Razor Pages
-│   ├── Index.cshtml            # Home page
-│   ├── Login.cshtml            # Authentication
-│   ├── Register.cshtml         # User registration
-│   ├── Logout.cshtml           # Session cleanup
-│   ├── User/                   # User pages
-│   │   ├── Dashboard.cshtml
-│   │   ├── Policies.cshtml
-│   │   └── Claims.cshtml
-│   ├── Admin/                  # Admin pages
-│   │   ├── Dashboard.cshtml
-│   │   ├── ManagePolicies.cshtml
-│   │   ├── ManageClaims.cshtml
-│   │   ├── ManageUsers.cshtml
-│   │   └── Reports.cshtml
-│   └── Shared/
-│       └── _Layout.cshtml      # Main layout with navigation
-├── wwwroot/
-│   ├── data/                   # JSON storage
-│   │   ├── admins.json
-│   │   ├── users.json
-│   │   ├── policies.json
-│   │   ├── claims.json
-│   │   └── purchases.json
-│   ├── css/
-│   │   └── site.css            # Custom styles
-│   └── js/
-│       └── site.js
-└── Program.cs                   # Application configuration
-```
-
 ---
 
 ## 📦 Installation & Setup
@@ -319,26 +274,6 @@ This project is open source and available for educational purposes.
 
 ---
 
-## ✨ Future Enhancements
-
-- [ ] Email notifications for claims
-- [ ] Payment gateway integration
-- [ ] Document upload for claims
-- [ ] Advanced analytics dashboard
-- [ ] Multi-language support
-- [ ] Export reports to PDF/Excel
-- [ ] Real-time notifications
-- [ ] Two-factor authentication
-
----
-
-## 📞 Support
-
-For questions or issues:
-1. Check the troubleshooting section
-2. Review code comments in source files
-3. Inspect JSON data files for structure
-4. Check browser console for errors
 
 ---
 
