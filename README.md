@@ -275,8 +275,4 @@ This project is open source and available for educational purposes.
 ---
 
 
----
-
-**Built with ❤️ using ASP.NET Core and C#**
-
 *Last Updated: October 2025*
